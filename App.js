@@ -1,14 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  Button,
-  FlatList,
-  TouchableOpacity,
-  Alert
-} from 'react-native';
+import { StyleSheet, View, FlatList, Alert } from 'react-native';
 import ListItem from './components/ListItem';
 import TaskInput from './components/TaskInput';
 
@@ -23,7 +14,13 @@ export default function App() {
   };
 
   const removeTodo = (todoKey) => {
-    setTodos(todos.filter((todo) => todo.key !== todoKey));
+    Alert.alert('Delete Task', 'Are you sure you want to delete this task?', [
+      { text: 'Cancel', style: 'cancel' },
+      {
+        text: 'Yes',
+        onPress: () => setTodos(todos.filter((todo) => todo.key !== todoKey))
+      }
+    ]);
   };
 
   return (
